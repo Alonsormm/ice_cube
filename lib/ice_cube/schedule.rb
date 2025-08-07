@@ -406,14 +406,6 @@ module IceCube
       from_yaml(yaml)
     end
 
-    private
-
-    # Reset all rules for another run
-    def reset
-      @all_recurrence_rules.each(&:reset)
-      @all_exception_rules.each(&:reset)
-    end
-
     # Find all of the occurrences for the schedule between opening_time
     # and closing_time
     # Iteration is unrolled in pairs to skip duplicate times in end of DST
@@ -437,6 +429,14 @@ module IceCube
           t1 = t0 + 1
         end
       end
+    end
+
+    private
+
+    # Reset all rules for another run
+    def reset
+      @all_recurrence_rules.each(&:reset)
+      @all_exception_rules.each(&:reset)
     end
 
     # Get the next time after (or including) a specific time
